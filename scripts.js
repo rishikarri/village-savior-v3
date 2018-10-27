@@ -15,14 +15,12 @@ $( document ).ready(function() {
     
 
    function draw() {
-        console.log(backgroundImage, 'background image')
-        console.log(context, 'cont3ext');
         context.drawImage(backgroundImage, 0, 0); // @TODO: move this to be background in plain css and then simply draw characters on constant
    }
 
     backgroundImage.onload = function() {
-        console.log('hi ');
-        console.log(hero(), 'hero');
+        console.log(hero());
+        console.log(hero, 'hero');
         draw();
     }
    

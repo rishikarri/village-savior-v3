@@ -5,7 +5,8 @@ var path = require('path');
      entry: './scripts.js',
      output: {
          path: path.resolve(__dirname, 'build'),
-         filename: 'main.bundle.js'
+         filename: 'main.bundle.js',
+         publicPath: "/build"
      },
      module: {
          rules: [

@@ -7,13 +7,15 @@
   "license": "MIT",
   "scripts": {
     "babel": "babel --presets es2015 js/main.js -o build/main.bundle.js",
-    "start": "http-server",
-    "webpack": "webpack"
+    "start": "webpack-dev-server --mode development --open",
+    "dev": "webpack --mode development",    
+    "build": "webpack --mode production"    
   },
   "devDependencies": {
     "babel-loader": "^8.0.4",
     "webpack": "^4.23.1",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
     "@babel/core": "^7.1.2",
