@@ -1,4 +1,4 @@
-
+import { hero } from './utils/Hero/index.js';
 
 $( document ).ready(function() {
     // creating a canvas element
@@ -21,6 +21,8 @@ $( document ).ready(function() {
    }
 
     backgroundImage.onload = function() {
+        console.log('hi ');
+        console.log(hero(), 'hero');
         draw();
     }
    
