@@ -1,8 +1,8 @@
-export function hero () {
-    console.log('hero');
-    console.log('if this wokr asdf');
-    console.log('asoidjfoaisdjf');
-    console.log('ypu');
-    const array = [1, 2, 3, 4]
-    console.log(2,...array);
+export function Hero (name, image, speed) {
+    this.name = name; 
+    this.image = new Image();
+    this.image.src = image; 
+    this.speed = speed; 
+    this.x = 200; 
+    this.y = 200; 
 }
