@@ -1,4 +1,5 @@
 import { Hero } from "./utils/Hero/index.js";
+import { update } from './utils/UpdateLoop/index.js';
 
 $(document).ready(function() {
   // creating a canvas element
@@ -12,21 +13,13 @@ $(document).ready(function() {
   var backgroundImage = new Image();
   backgroundImage.src = "./Images/background.jpeg";
 
-  var keysPressed = []; //array that holds whats in the array
-
-  addEventListener("keyup", function(event) {
-    delete keysPressed[event.keyCode];
-  });
-  //anonymous functions to pass moveArcher commands
-  addEventListener("keydown", function(event) {
-    keysPressed[event.keyCode] = true; //this position of the array has a position of true
-  });
   const archer = new Hero("archer", "./Images/archer.png", 1);
 
+  
   function draw() {
     context.drawImage(backgroundImage, 0, 0); // @TODO: move this to be background in plain css and then simply draw characters on constant
-    context.drawImage(archer.image, archer.x, archer.y);
-    archer.move(keysPressed);
+    update(context, archer);
+    
     // create loop so that we keep drawing 
     requestAnimationFrame(draw);
   }
