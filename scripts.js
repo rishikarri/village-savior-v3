@@ -1,4 +1,4 @@
-import { Hero } from "./utils/Hero/index.js";
+
 import { update } from './utils/UpdateLoop/index.js';
 
 $(document).ready(function() {
@@ -11,23 +11,18 @@ $(document).ready(function() {
   $("#canvas").append(canvas);
 
   var backgroundImage = new Image();
-  backgroundImage.src = "./Images/background.jpeg";
-
-  const archer = new Hero("archer", "./Images/archer.png", 1);
+  backgroundImage.src = "./Images/background.jpeg";  
 
   
   function draw() {
     context.drawImage(backgroundImage, 0, 0); // @TODO: move this to be background in plain css and then simply draw characters on constant
-    update(context, archer);
+    update(context);
     
     // create loop so that we keep drawing 
     requestAnimationFrame(draw);
   }
 
   backgroundImage.onload = function() {
-    console.log(archer, "archer");
-
     draw();
-    
   };
 });

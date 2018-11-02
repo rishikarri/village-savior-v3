@@ -1,7 +1,3 @@
-// CREATE EVENT LISTENERS
-
-
-
 export function Hero(name, image, speed) {
   this.name = name;
   this.image = new Image();
