@@ -19,6 +19,7 @@ export function update(context) {
   goblin.updateFrame();
   console.log(goblin, 'goblin');
   context.drawImage(goblin.image, goblin.srcX, goblin.srcY, goblin.frameWidth, goblin.frameHeight, goblin.x, goblin.y, goblin.frameWidth, goblin.frameHeight);
-  // goblin.move();
+  // context.clearRect(goblin.x, goblin.y, goblin.frameWidth, goblin.frameHeight);
+  goblin.move();
   archer.move(keysPressed);
 }
