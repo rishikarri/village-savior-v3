@@ -17,5 +17,6 @@ const goblin = new Goblin("goblin0", "../../Images/goblin-image.png", 1);
 export function update(context) {
   context.drawImage(archer.image, archer.x, archer.y);
   context.drawImage(goblin.image, goblin.x, goblin.y);
+  goblin.move();
   archer.move(keysPressed);
 }
