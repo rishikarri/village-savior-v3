@@ -1,4 +1,4 @@
-function Goblin(name, image){
+export function Goblin(name, image){
 	this.name = name; 
 	this.health = 3;
 	this.image = new Image();
