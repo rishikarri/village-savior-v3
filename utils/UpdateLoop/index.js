@@ -12,7 +12,7 @@ keysPressed[event.keyCode] = true; //this position of the array has a position o
 });
 
 const archer = new Hero("archer", "../../Images/archer.png", 1);
-const goblin = new Goblin("goblin0", "../../Images/goblin-small-spritesheet-11.4-dirty.png", 1);
+const goblin = new Goblin("goblin0", "../../Images/goblin-small-spritesheet-11.4-dirty.png", "../../Images/goblin-small-spritesheet-11.4-flipped.png", 1);
 
 export function update(context) {
   context.drawImage(archer.image, archer.x, archer.y);
