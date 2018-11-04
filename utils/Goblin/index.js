@@ -1,13 +1,13 @@
 const sheetWidth = 1160;
-const sheetHeight = 57;
+const sheetHeight = 113;
 const numFrames = 20;
+const numRows = 2;
 const frameWidth = sheetWidth / numFrames;
-const frameHeight = sheetHeight;
+const frameHeight = sheetHeight / numRows;
 let frameIndex = 0;
-let countBackwards = false;
 let staggerFrame = 0;
 
-export function Goblin(name, image, flippedImage) {
+export function Goblin(name, image) {
   this.name = name;
   this.health = 3;
   this.image = new Image();
@@ -23,25 +23,34 @@ export function Goblin(name, image, flippedImage) {
   this.frameHeight = frameHeight;
   this.updateFrame = function() {
 	// walking backwards
-	if (this.destinationX < this.x) {
-		this.image.src = flippedImage; 
-	} else {
-		this.image.src = image;
-	}
+	// if (this.destinationX < this.x) {
+	// 	console.log('walking left');
+	// 	this.srcY = frameHeight;	
+	// } else {
+	// 	this.srcyY = 0; 
+	// }	
 	staggerFrame = ++staggerFrame % 2;
     if (staggerFrame === 0) {
 	  frameIndex = ++frameIndex % numFrames;
 	}    
-	this.srcX = frameIndex * frameWidth;
-	this.srcY = 0;
+	this.srcX = frameIndex * frameWidth;	
     
 
     console.log(frameIndex, "frame index");
   };
   this.move = function() {
     if (Math.abs(this.x - this.destinationX) < 32) {
-		console.log('walking in a direction');
-      this.destinationX = Math.random() * 440 + 40;
+		// monster hit the destination - walk to a new place to a n
+		console.log('found spot');
+	  this.destinationX = Math.random() * 440 + 40;
+	  if (this.destinationX < this.x) {
+		//   he is going to walk left use second row of frames
+		this.srcY = frameHeight;
+	  } else {
+		//  he is about to walk right - use first set of frames
+		this.srcY = 0;
+	  }
+
     } else if (this.x < this.destinationX) {
       this.x += 2.94 * this.speed;
     } else {
