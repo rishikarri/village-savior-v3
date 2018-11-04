@@ -15,10 +15,19 @@ export function Goblin(name, image, speed, archer) {
   this.speed = speed || 0.5;
   this.x = Math.random() * 440 + 40;
   this.y = Math.random() * 400 + 20;
-  this.destinationX = 500;
+  this.destinationX = 100;
   this.destinationY = Math.random() * 400 + 20;
   this.srcX = 0;
-  this.srcY = 0;
+  this.findFrameRow = function () {
+	if (this.destinationX < this.x) {
+        //   he is going to walk left use second row of frames
+        return frameHeight;
+      } else {
+        //  he is about to walk right - use first set of frames
+        return 0;
+      }
+  }
+  this.srcY = this.findFrameRow();
   this.frameWidth = frameWidth;
   this.frameHeight = frameHeight;
   this.updateFrame = function() {
@@ -28,6 +37,8 @@ export function Goblin(name, image, speed, archer) {
     }
     this.srcX = frameIndex * frameWidth;
   };
+
+  
   this.move = function() {
     // catch archer logic
 	// console.log('move');
@@ -39,14 +50,8 @@ export function Goblin(name, image, speed, archer) {
     }
     if (Math.abs(this.x - this.destinationX) < 32) {
       // monster hit the destination - walk to a new place to a n
-      this.destinationX = Math.random() * 440 + 40;
-      if (this.destinationX < this.x) {
-        //   he is going to walk left use second row of frames
-        this.srcY = frameHeight;
-      } else {
-        //  he is about to walk right - use first set of frames
-        this.srcY = 0;
-      }
+	  this.destinationX = Math.random() * 440 + 40;
+	  this.srcY = this.findFrameRow(); 
     } else if (this.x < this.destinationX) {
       this.x += 2.94 * this.speed;
     } else {
