@@ -15,28 +15,18 @@ export function Goblin(name, image) {
   this.speed = .5;
   this.x = Math.random() * 440 + 40;
   this.y = Math.random() * 400 + 20;
-  this.destinationX = 640 + 40;
+  this.destinationX = 500;
   this.destinationY = Math.random() * 400 + 20;
   this.srcX = 0;
   this.srcY = 0;
   this.frameWidth = frameWidth;
   this.frameHeight = frameHeight;
-  this.updateFrame = function() {
-	// walking backwards
-	// if (this.destinationX < this.x) {
-	// 	console.log('walking left');
-	// 	this.srcY = frameHeight;	
-	// } else {
-	// 	this.srcyY = 0; 
-	// }	
+  this.updateFrame = function() {	
 	staggerFrame = ++staggerFrame % 2;
     if (staggerFrame === 0) {
 	  frameIndex = ++frameIndex % numFrames;
 	}    
 	this.srcX = frameIndex * frameWidth;	
-    
-
-    console.log(frameIndex, "frame index");
   };
   this.move = function() {
     if (Math.abs(this.x - this.destinationX) < 32) {
