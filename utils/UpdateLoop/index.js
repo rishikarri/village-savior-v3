@@ -12,13 +12,11 @@ keysPressed[event.keyCode] = true; //this position of the array has a position o
 });
 
 const archer = new Hero("archer", "../../Images/archer.png", 1);
-const goblin = new Goblin("goblin0", "../../Images/goblin-spritesheet-forward-backward.png", 1);
+const goblin = new Goblin("goblin0", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
 
 export function update(context) {
   context.drawImage(archer.image, archer.x, archer.y);
   goblin.updateFrame();
-  console.log(JSON.stringify(goblin), 'goblin');
-  // context.clearRect(goblin.x, goblin.y, goblin.frameWidth, goblin.frameHeight);
   context.drawImage(goblin.image, goblin.srcX, goblin.srcY, goblin.frameWidth, goblin.frameHeight, goblin.x, goblin.y, goblin.frameWidth, goblin.frameHeight);
   
   goblin.move();

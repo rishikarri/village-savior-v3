@@ -7,12 +7,12 @@ const frameHeight = sheetHeight / numRows;
 let frameIndex = 0;
 let staggerFrame = 0;
 
-export function Goblin(name, image) {
+export function Goblin(name, image, speed, archer) {
   this.name = name;
   this.health = 3;
   this.image = new Image();
-  this.image.src = image;      
-  this.speed = .5;
+  this.image.src = image;
+  this.speed = speed || 0.5;
   this.x = Math.random() * 440 + 40;
   this.y = Math.random() * 400 + 20;
   this.destinationX = 500;
@@ -21,26 +21,32 @@ export function Goblin(name, image) {
   this.srcY = 0;
   this.frameWidth = frameWidth;
   this.frameHeight = frameHeight;
-  this.updateFrame = function() {	
-	staggerFrame = ++staggerFrame % 2;
+  this.updateFrame = function() {
+    staggerFrame = ++staggerFrame % 2;
     if (staggerFrame === 0) {
-	  frameIndex = ++frameIndex % numFrames;
-	}    
-	this.srcX = frameIndex * frameWidth;	
+      frameIndex = ++frameIndex % numFrames;
+    }
+    this.srcX = frameIndex * frameWidth;
   };
   this.move = function() {
+    // catch archer logic
+	// console.log('move');
+    if ((Math.abs(this.x - archer.x) < 24) && (Math.abs(this.y - archer.y) < 24)) {
+		console.log ('hello');
+      this.x = Math.random() * 440 + 40;
+	  this.y = Math.random() * 400 + 20;
+	  this.catchHero();
+    }
     if (Math.abs(this.x - this.destinationX) < 32) {
-		// monster hit the destination - walk to a new place to a n
-		console.log('found spot');
-	  this.destinationX = Math.random() * 440 + 40;
-	  if (this.destinationX < this.x) {
-		//   he is going to walk left use second row of frames
-		this.srcY = frameHeight;
-	  } else {
-		//  he is about to walk right - use first set of frames
-		this.srcY = 0;
-	  }
-
+      // monster hit the destination - walk to a new place to a n
+      this.destinationX = Math.random() * 440 + 40;
+      if (this.destinationX < this.x) {
+        //   he is going to walk left use second row of frames
+        this.srcY = frameHeight;
+      } else {
+        //  he is about to walk right - use first set of frames
+        this.srcY = 0;
+      }
     } else if (this.x < this.destinationX) {
       this.x += 2.94 * this.speed;
     } else {
@@ -53,5 +59,8 @@ export function Goblin(name, image) {
     } else {
       this.y += 2.94 * this.speed;
     }
+  };
+  this.catchHero = function() {
+	archer.decreaseHealth(1);
   };
 }
