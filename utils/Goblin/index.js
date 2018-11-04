@@ -1,17 +1,18 @@
-const sheetWidth = 1429;
-const sheetHeight = 50;
-const numFrames = 24;
+const sheetWidth = 1160;
+const sheetHeight = 57;
+const numFrames = 20;
 const frameWidth = sheetWidth / numFrames;
 const frameHeight = sheetHeight;
 let frameIndex = 0;
-let countBackwards = false; 
+let countBackwards = false;
+let staggerFrame = 0;
 
 export function Goblin(name, image) {
   this.name = name;
   this.health = 3;
   this.image = new Image();
-  this.image.src = image;
-  this.speed = 1;
+  this.image.src = image;  
+  this.speed = .5;
   this.x = Math.random() * 440 + 40;
   this.y = Math.random() * 400 + 20;
   this.destinationX = 640 + 40;
@@ -21,25 +22,15 @@ export function Goblin(name, image) {
   this.frameWidth = frameWidth;
   this.frameHeight = frameHeight;
   this.updateFrame = function() {
-	
-	// frameIndex = ++frameIndex % numFrames;	
+	staggerFrame = ++staggerFrame % 2;
+    if (staggerFrame === 0) {
+	  frameIndex = ++frameIndex % numFrames;
+	}    
+	this.srcX = frameIndex * frameWidth;
+	this.srcY = 0;
+    
 
-	if (frameIndex === 0) {
-		countBackwards = false; 		
-	} 
-
-	if (frameIndex === 23) {
-		countBackwards = true;
-	}
-
-	if (countBackwards) {		
-		frameIndex = --frameIndex;	
-	} else {
-		frameIndex = ++frameIndex;
-	}
-	console.log(frameIndex, 'frame index');
-    this.srcX = frameIndex * frameWidth;
-    this.srcY = 0;
+    console.log(frameIndex, "frame index");
   };
   this.move = function() {
     if (Math.abs(this.x - this.destinationX) < 32) {
