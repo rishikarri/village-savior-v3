@@ -4,14 +4,14 @@ const numFrames = 20;
 const numRows = 2;
 const frameWidth = sheetWidth / numFrames;
 const frameHeight = sheetHeight / numRows;
-let frameIndex = 0;
-let staggerFrame = 0;
 
 export function Goblin(name, image, speed, archer) {
   this.name = name;
   this.health = 3;
   this.image = new Image();
   this.image.src = image;
+  this.frameIndex = 0;
+  this.staggerFrame = 0;
   this.speed = speed || 1;
   this.x = Math.floor(Math.random() * 440 + 40);
   this.y = Math.floor(Math.random() * 400 + 20);
@@ -31,11 +31,13 @@ export function Goblin(name, image, speed, archer) {
   this.frameWidth = frameWidth;
   this.frameHeight = frameHeight;
   this.updateFrame = function() {
-    staggerFrame = ++staggerFrame % 2;
-    if (staggerFrame === 0) {
-      frameIndex = ++frameIndex % numFrames;
+    console.log('update frame run, frame number: ', this.frameIndex, this.name);
+    // console.log(this.name, 'name');
+    this.staggerFrame = ++this.staggerFrame % 2;
+    if (this.staggerFrame === 0) {
+      this.frameIndex = ++this.frameIndex % numFrames;
     }
-    this.srcX = frameIndex * frameWidth;
+    this.srcX = this.frameIndex * frameWidth;
   };
 
   

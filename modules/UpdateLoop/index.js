@@ -13,12 +13,23 @@ keysPressed[event.keyCode] = true; //this position of the array has a position o
 
 const archer = new Hero("archer", "../../Images/archer.png", 1);
 const goblin = new Goblin("goblin0", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
+const goblin1 = new Goblin("goblin1", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
+const goblin2 = new Goblin("goblin2", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
 
+const goblinArray = [goblin, goblin1, goblin2];
 export function update(context) {
   context.drawImage(archer.image, archer.x, archer.y);
-  goblin.updateFrame();
-  context.drawImage(goblin.image, goblin.srcX, goblin.srcY, goblin.frameWidth, goblin.frameHeight, goblin.x, goblin.y, goblin.frameWidth, goblin.frameHeight);
   
-  goblin.move();
+  for (let i = 0; i < goblinArray.length; i++) {
+    goblinArray[i].updateFrame();
+    context.drawImage(goblinArray[i].image, goblinArray[i].srcX, goblinArray[i].srcY, goblinArray[i].frameWidth, goblinArray[i].frameHeight, goblinArray[i].x, goblinArray[i].y, goblinArray[i].frameWidth, goblinArray[i].frameHeight);
+    goblinArray[i].move();
+  }
+  
+  
+  
+  console.log(goblinArray, 'goblin array');
+  
+  
   archer.move(keysPressed);
 }
