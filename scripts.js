@@ -1,5 +1,5 @@
 
-import { update } from './utils/UpdateLoop/index.js';
+import { update } from './modules/UpdateLoop/index.js';
 
 $(document).ready(function() {
   // creating a canvas element

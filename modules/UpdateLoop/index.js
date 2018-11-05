@@ -1,5 +1,5 @@
-import { Hero } from "../../utils/Hero/index.js";
-import { Goblin } from "../../utils/Goblin/index.js";
+import { Hero } from "../../modules/Hero/index.js";
+import { Goblin } from "../../modules/Goblin/index.js";
 
 var keysPressed = []; //array that holds whats in the array
 
