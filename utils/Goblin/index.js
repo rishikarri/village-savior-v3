@@ -12,11 +12,11 @@ export function Goblin(name, image, speed, archer) {
   this.health = 3;
   this.image = new Image();
   this.image.src = image;
-  this.speed = speed || 0.5;
-  this.x = Math.random() * 440 + 40;
-  this.y = Math.random() * 400 + 20;
+  this.speed = speed || 1;
+  this.x = Math.floor(Math.random() * 440 + 40);
+  this.y = Math.floor(Math.random() * 400 + 20);
   this.destinationX = 100;
-  this.destinationY = Math.random() * 400 + 20;
+  this.destinationY = Math.floor(Math.random() * 400 + 20);
   this.srcX = 0;
   this.findFrameRow = function () {
 	if (this.destinationX < this.x) {
@@ -53,16 +53,16 @@ export function Goblin(name, image, speed, archer) {
 	  this.destinationX = Math.random() * 440 + 40;
 	  this.srcY = this.findFrameRow(); 
     } else if (this.x < this.destinationX) {
-      this.x += 2.94 * this.speed;
+      this.x += 2 * this.speed;
     } else {
-      this.x -= 2.94 * this.speed;
+      this.x -= 2 * this.speed;
     }
     if (Math.abs(this.y - this.destinationY) < 32) {
-      this.destinationY = Math.random() * 400 + 20;
+      this.destinationY = Math.floor(Math.random() * 400 + 20);
     } else if (this.y > this.destinationY) {
-      this.y -= 2.94 * this.speed;
+      this.y -= 2 * this.speed;
     } else {
-      this.y += 2.94 * this.speed;
+      this.y += 2 * this.speed;
     }
   };
   this.catchHero = function() {

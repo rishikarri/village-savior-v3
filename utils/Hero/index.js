@@ -9,7 +9,7 @@ export function Hero(name, image, speed) {
 
   this.decreaseHealth = function(damage = 1) {
     this.health -= damage;    
-    console.log(this.health, 'this.health');
+    console.log(this.health, 'hero health');
   };
 
   this.move = function(keysPressed) {
