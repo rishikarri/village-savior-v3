@@ -56,6 +56,7 @@ export class Goblin {
     ) {
       console.log("hello");
       this.x = xCoordGen.next().value;
+      this.srcY = this.findFrameRow();
       this.y = yCoordGen.next().value;
       this.catchHero();
     }
