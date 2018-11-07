@@ -5,32 +5,37 @@ const numRows = 2;
 const frameWidth = sheetWidth / numFrames;
 const frameHeight = sheetHeight / numRows;
 
-export function Goblin(name, image, speed, archer) {
-  this.name = name;
-  this.health = 3;
-  this.image = new Image();
-  this.image.src = image;
-  this.frameIndex = 0;
-  this.staggerFrame = 0;
-  this.speed = speed || 1;
-  this.x = Math.floor(Math.random() * 440 + 40);
-  this.y = Math.floor(Math.random() * 400 + 20);
-  this.destinationX = 100;
-  this.destinationY = Math.floor(Math.random() * 400 + 20);
-  this.srcX = 0;
-  this.findFrameRow = function () {
-	if (this.destinationX < this.x) {
-        //   he is going to walk left use second row of frames
-        return frameHeight;
-      } else {
-        //  he is about to walk right - use first set of frames
-        return 0;
-      }
+export class Goblin{
+  constructor(name, image, speed, archer) {
+    this.name = name;
+    this.health = 3;
+    this.image = new Image();
+    this.image.src = image;
+    this.frameIndex = 0;
+    this.staggerFrame = 0;
+    this.speed = speed || 1;
+    this.x = Math.floor(Math.random() * 440 + 40);
+    this.y = Math.floor(Math.random() * 400 + 20);
+    this.destinationX = 100;
+    this.destinationY = Math.floor(Math.random() * 400 + 20);
+    this.srcX = 0;
+    this.srcY = this.findFrameRow();
+    this.frameWidth = frameWidth;
+    this.frameHeight = frameHeight;
+    this.heroToAttack = archer;
   }
-  this.srcY = this.findFrameRow();
-  this.frameWidth = frameWidth;
-  this.frameHeight = frameHeight;
-  this.updateFrame = function() {
+  
+  findFrameRow() {
+    if (this.destinationX < this.x) {
+          //   he is going to walk left use second row of frames
+      return frameHeight;
+    } else {
+      //  he is about to walk right - use first set of frames
+      return 0;
+    }
+  }
+  
+  updateFrame() {
     console.log('update frame run, frame number: ', this.frameIndex, this.name);
     // console.log(this.name, 'name');
     this.staggerFrame = ++this.staggerFrame % 2;
@@ -38,13 +43,13 @@ export function Goblin(name, image, speed, archer) {
       this.frameIndex = ++this.frameIndex % numFrames;
     }
     this.srcX = this.frameIndex * frameWidth;
-  };
+  }
 
   
-  this.move = function() {
+  move() {
     // catch archer logic
 	// console.log('move');
-    if ((Math.abs(this.x - archer.x) < 24) && (Math.abs(this.y - archer.y) < 24)) {
+    if ((Math.abs(this.x - this.heroToAttack.x) < 24) && (Math.abs(this.y - this.heroToAttack.y) < 24)) {
 		console.log ('hello');
       this.x = Math.random() * 440 + 40;
 	  this.y = Math.random() * 400 + 20;
@@ -66,8 +71,8 @@ export function Goblin(name, image, speed, archer) {
     } else {
       this.y += 2 * this.speed;
     }
-  };
-  this.catchHero = function() {
-	archer.decreaseHealth(1);
-  };
+  }
+  catchHero() {
+	  this.heroToAttack.decreaseHealth(1);
+  }
 }
