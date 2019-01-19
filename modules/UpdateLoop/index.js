@@ -1,5 +1,6 @@
 import { Hero } from "../../modules/Hero/index.js";
 import { Goblin } from "../../modules/Goblin/index.js";
+import { Enemy } from "../../modules/Enemy/index.js";
 
 var keysPressed = []; //array that holds whats in the array
 
@@ -15,6 +16,13 @@ const archer = new Hero("archer", "../../Images/archer.png", 1);
 const goblin = new Goblin("goblin0", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
 const goblin1 = new Goblin("goblin1", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
 const goblin2 = new Goblin("goblin2", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
+
+const GoblinTest = Object.create(Enemy);
+const goblin3 = Object.create(GoblinTest);
+
+goblin3.init("goblin3", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
+console.log(goblin3, 'goglin3')
+console.log(GoblinTest, 'GoblinTest')
 
 const goblinArray = [goblin, goblin1, goblin2];
 export function update(context) {
