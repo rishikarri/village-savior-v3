@@ -14,27 +14,27 @@ export function Hero(name, image, speed) {
   this.move = function(keysPressed) {
     
     // move left
-    if (65 in keysPressed) {      
+    if (keysPressed[65]) {      
       if (this.x >= 80) {
         this.x -= 7 * this.speed;
       }
     }
     // move up
-    if (87 in keysPressed) {
+    if (keysPressed[87]) {
       if (this.y >= 30) {
         this.y -= 7 * this.speed;
       }
     }
 
     // move right
-    if (68 in keysPressed) {
+    if (keysPressed[68]) {
       if (this.x <= 520) {
         this.x += 7 * this.speed;
       }
     }
 
     // move down
-    if (83 in keysPressed) {
+    if (keysPressed[83]) {
       if (this.y <= 390) {
         this.y += 7 * this.speed;
       }
