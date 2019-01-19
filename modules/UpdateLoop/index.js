@@ -13,17 +13,19 @@ addEventListener("keydown", function(event) {
 });
 
 const archer = new Hero("archer", "../../Images/archer.png", 1);
-const goblin = new Goblin("goblin0", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
-const goblin1 = new Goblin("goblin1", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
-const goblin2 = new Goblin("goblin2", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
+// const goblin = new Goblin("goblin0", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
+// const goblin1 = new Goblin("goblin1", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
+// const goblin2 = new Goblin("goblin2", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
 
 const goblin3 = Object.create(GoblinTest);
+const goblin1 = Object.create(GoblinTest);
 
-goblin3.setUp("goblin3", "../../Images/goblin-spritesheet-forward-backward.png", null, archer);
-console.log(goblin3, 'goglin3')
+goblin3.setUp(archer);
+goblin1.setUp(archer);
+console.log(goblin1, 'goglin3')
 console.log(GoblinTest, 'GoblinTest')
 
-const goblinArray = [goblin, goblin1, goblin2, goblin3];
+const goblinArray = [goblin3, goblin1];
 export function update(context) {
   context.drawImage(archer.image, archer.x, archer.y);
   

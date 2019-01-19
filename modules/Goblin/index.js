@@ -7,30 +7,19 @@ const numFrames = 20;
 const numRows = 2;
 const frameWidth = sheetWidth / numFrames;
 const frameHeight = sheetHeight / numRows;
+
+let goblinCounter = 0;
 console.log(Enemy, 'enemy')
 
 
 const GoblinTest = Object.create(Enemy);
 
-// GoblinTest.findFrameRow = 
 
-function findFrameRow(destinationX, x) {
-  console.log(this, 'thi frame rows')
-
-  if (destinationX < x) {
-    //   he is going to walk left use second row of frames
-    return frameHeight;
-  } else {
-    //  he is about to walk right - use first set of frames
-    return 0;
-  }
-}
-
-GoblinTest.setUp = function(name, image, speed, archer) {
+GoblinTest.setUp = function(archer) {
   // delegate to enemy init to initialize Goblin factory
   console.log(this, 'th setupis')
 
-  this.init(name, image, speed, archer, findFrameRow, frameWidth, frameHeight, numFrames)
+  this.init(`goblin${goblinCounter++}`, "../../Images/goblin-spritesheet-forward-backward.png", 1, archer, frameWidth, frameHeight, numFrames)
 }
 
 class Goblin {

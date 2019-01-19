@@ -1,7 +1,7 @@
 import {xCoordGen, yCoordGen} from '../RandNumGen/index.js';
 
 export const Enemy = {
-    init: function(name, image, speed, archer, findFrameRow, frameWidth, frameHeight, numFrames) {
+    init: function(name, image, speed, archer, frameWidth, frameHeight, numFrames) {
         this.name = name;
         this.health = 3;
         this.image = new Image();
