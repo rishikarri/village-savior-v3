@@ -23,7 +23,7 @@ goblin3.setUp("goblin3", "../../Images/goblin-spritesheet-forward-backward.png",
 console.log(goblin3, 'goglin3')
 console.log(GoblinTest, 'GoblinTest')
 
-const goblinArray = [goblin, goblin1, goblin2];
+const goblinArray = [goblin, goblin1, goblin2, goblin3];
 export function update(context) {
   context.drawImage(archer.image, archer.x, archer.y);
   

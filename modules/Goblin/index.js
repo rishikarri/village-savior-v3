@@ -30,7 +30,7 @@ GoblinTest.setUp = function(name, image, speed, archer) {
   // delegate to enemy init to initialize Goblin factory
   console.log(this, 'th setupis')
 
-  this.init(name, image, speed, archer, findFrameRow, frameWidth, frameHeight)
+  this.init(name, image, speed, archer, findFrameRow, frameWidth, frameHeight, numFrames)
 }
 
 class Goblin {
