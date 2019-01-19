@@ -1,4 +1,5 @@
 import {xCoordGen, yCoordGen} from '../RandNumGen/index.js';
+import { Enemy } from "../../modules/Enemy/index.js";
 
 const sheetWidth = 1160;
 const sheetHeight = 113;
@@ -6,8 +7,33 @@ const numFrames = 20;
 const numRows = 2;
 const frameWidth = sheetWidth / numFrames;
 const frameHeight = sheetHeight / numRows;
+console.log(Enemy, 'enemy')
 
-export class Goblin {
+
+const GoblinTest = Object.create(Enemy);
+
+// GoblinTest.findFrameRow = 
+
+function findFrameRow(destinationX, x) {
+  console.log(this, 'thi frame rows')
+
+  if (destinationX < x) {
+    //   he is going to walk left use second row of frames
+    return frameHeight;
+  } else {
+    //  he is about to walk right - use first set of frames
+    return 0;
+  }
+}
+
+GoblinTest.setUp = function(name, image, speed, archer) {
+  // delegate to enemy init to initialize Goblin factory
+  console.log(this, 'th setupis')
+
+  this.init(name, image, speed, archer, findFrameRow, frameWidth, frameHeight)
+}
+
+class Goblin {
   constructor(name, image, speed, archer) {
     this.name = name;
     this.health = 3;
@@ -77,3 +103,8 @@ export class Goblin {
     this.heroToAttack.decreaseHealth(1);
   }
 }
+
+export {
+  Goblin,
+  GoblinTest
+};
