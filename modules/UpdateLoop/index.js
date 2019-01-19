@@ -26,10 +26,5 @@ export function update(context) {
     goblinArray[i].move();
   }
   
-  
-  
-  console.log(goblinArray, 'goblin array');
-  
-  
   archer.move(keysPressed);
 }

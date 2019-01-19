@@ -38,8 +38,6 @@ export class Goblin {
   }
 
   updateFrame() {
-    console.log("update frame run, frame number: ", this.frameIndex, this.name);
-    // console.log(this.name, 'name');
     this.staggerFrame = ++this.staggerFrame % 2;
     if (this.staggerFrame === 0) {
       this.frameIndex = ++this.frameIndex % numFrames;
@@ -49,12 +47,10 @@ export class Goblin {
 
   move() {
     // catch archer logic
-    // console.log('move');
     if (
       Math.abs(this.x - this.heroToAttack.x) < 24 &&
       Math.abs(this.y - this.heroToAttack.y) < 24
     ) {
-      console.log("hello");
       this.x = xCoordGen.next().value;
       this.srcY = this.findFrameRow();
       this.y = yCoordGen.next().value;

@@ -1,4 +1,6 @@
 
+"use strict";
+
 import { update } from './modules/UpdateLoop/index.js';
 
 $(document).ready(function() {
