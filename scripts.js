@@ -15,16 +15,25 @@ $(document).ready(function() {
   var backgroundImage = new Image();
   backgroundImage.src = "./Images/background.jpeg";  
 
-  
-  function draw() {
+  var lastFrameTimeMs = 0, // The last time the loop was run
+    maxFPS = 50; // The maximum FPS we want to allow
+  function mainLoop(timestamp) {
+    // Throttle the frame rate. 
+    // debugger;   
+    if (timestamp < lastFrameTimeMs + (1000 / maxFPS)) {
+        // short circuit until alloted time has passed
+        requestAnimationFrame(mainLoop);
+        return;
+    }
+    lastFrameTimeMs = timestamp;
+ 
     context.drawImage(backgroundImage, 0, 0); // @TODO: move this to be background in plain css and then simply draw characters on constant
     update(context);
-    
-    // create loop so that we keep drawing 
-    requestAnimationFrame(draw);
+    requestAnimationFrame(mainLoop);
+
   }
 
   backgroundImage.onload = function() {
-    draw();
+    requestAnimationFrame(mainLoop);
   };
 });
