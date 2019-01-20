@@ -22,7 +22,8 @@ console.log(goblin1, 'goglin3')
 console.log(Goblin, 'GoblinTest')
 
 const goblinArray = [goblin3, goblin1];
-export function update(context) {
+export function update(context, delta) {
+  console.log(delta, 'delta')
   context.drawImage(archer.image, archer.x, archer.y);
   
   for (let i = 0; i < goblinArray.length; i++) {

@@ -15,13 +15,13 @@ $(document).ready(function() {
   var backgroundImage = new Image();
   backgroundImage.src = "./Images/background.jpeg";  
 
-  var lastFrameTimeMs = 0, // The last time the loop was run
-    maxFPS = .5, // The maximum FPS we want to allow
-    delta = 0;
+  var lastFrameTimeMs = 0; // The last time the loop was run
+  var maxFPS = .5; // The maximum FPS we want to allow
+  var delta = 0;
 
   function mainLoop(timestamp) {
     // Throttle the frame rate. 
-    debugger;   
+    // debugger;   
     if (timestamp < lastFrameTimeMs + (1000 / maxFPS)) {
         // short circuit until alloted time has passed
         requestAnimationFrame(mainLoop);
