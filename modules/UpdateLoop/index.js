@@ -11,7 +11,7 @@ addEventListener("keydown", function(event) {
   keysPressed[event.keyCode] = true; //this position of the array has a position of true
 });
 
-const archer = new Hero("archer", "../../Images/archer.png", 1);
+const archer = new Hero("archer", "../../Images/archer.png", 0.33);
 
 const goblin3 = Object.create(Goblin);
 const goblin1 = Object.create(Goblin);
@@ -32,5 +32,5 @@ export function update(context, delta) {
     goblinArray[i].move(delta);
   }
   
-  archer.move(keysPressed);
+  archer.move(keysPressed, delta);
 }
