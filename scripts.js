@@ -16,7 +16,8 @@ $(document).ready(function() {
   backgroundImage.src = "./Images/background.jpeg";  
 
   var lastFrameTimeMs = 0; // The last time the loop was run
-  var maxFPS = .5; // The maximum FPS we want to allow
+  var maxFPS = 10; // The maximum FPS we want to allow
+  var timestep = 1000 / maxFPS
   var delta = 0;
 
   function mainLoop(timestamp) {
@@ -27,11 +28,16 @@ $(document).ready(function() {
         requestAnimationFrame(mainLoop);
         return;
     }
-    delta = timestamp - lastFrameTimeMs; // get the delta time since last frame
+    delta += timestamp - lastFrameTimeMs; // get delta since last timestamp
     lastFrameTimeMs = timestamp;
+      // Simulate the total elapsed time in fixed-size chunks
+      while (delta >= timestep) {
+        context.drawImage(backgroundImage, 0, 0); // @TODO: move this to be background in plain css and then simply draw characters on constant
+        update(context, timestep);
+        delta -= timestep;
+      }
  
-    context.drawImage(backgroundImage, 0, 0); // @TODO: move this to be background in plain css and then simply draw characters on constant
-    update(context, delta);
+    
     requestAnimationFrame(mainLoop);
 
   }
