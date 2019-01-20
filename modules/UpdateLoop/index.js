@@ -11,7 +11,7 @@ addEventListener("keydown", function(event) {
   keysPressed[event.keyCode] = true; //this position of the array has a position of true
 });
 
-const archer = new Hero("archer", "../../Images/archer.png", 0.33);
+const archer = new Hero("archer", "../../Images/archer.png", 3);
 
 const goblin3 = Object.create(Goblin);
 const goblin1 = Object.create(Goblin);
@@ -22,15 +22,19 @@ console.log(goblin1, 'goglin3')
 console.log(Goblin, 'GoblinTest')
 
 const goblinArray = [goblin3, goblin1];
+
+let unitMovement = 2;
 export function update(context, delta) {
   console.log(delta, 'delta')
+
+  unitMovement = delta / 10;
   context.drawImage(archer.image, archer.x, archer.y);
   
   for (let i = 0; i < goblinArray.length; i++) {
     goblinArray[i].updateFrame();
     context.drawImage(goblinArray[i].image, goblinArray[i].srcX, goblinArray[i].srcY, goblinArray[i].frameWidth, goblinArray[i].frameHeight, goblinArray[i].x, goblinArray[i].y, goblinArray[i].frameWidth, goblinArray[i].frameHeight);
-    goblinArray[i].move(delta);
+    goblinArray[i].move(unitMovement);
   }
   
-  archer.move(keysPressed, delta);
+  archer.move(keysPressed, unitMovement);
 }

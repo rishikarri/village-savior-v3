@@ -14,7 +14,7 @@ const Goblin = Object.create(Enemy);
 
 Goblin.setUp = function(archer) {
   // delegate to enemy init to initialize Goblin set up
-  this.init(`goblin${goblinCounter++}`, goblinSpritesheet, 1 / 12, archer, frameWidth, frameHeight, numFrames)
+  this.init(`goblin${goblinCounter++}`, goblinSpritesheet, 1, archer, frameWidth, frameHeight, numFrames)
 }
 
 
