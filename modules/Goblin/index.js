@@ -1,4 +1,3 @@
-import {xCoordGen, yCoordGen} from '../RandNumGen/index.js';
 import { Enemy } from "../../modules/Enemy/index.js";
 
 const sheetWidth = 1160;
@@ -7,93 +6,18 @@ const numFrames = 20;
 const numRows = 2;
 const frameWidth = sheetWidth / numFrames;
 const frameHeight = sheetHeight / numRows;
-
+const goblinSpritesheet = "../../Images/goblin-spritesheet-forward-backward.png";
 let goblinCounter = 0;
-console.log(Enemy, 'enemy')
 
 
-const GoblinTest = Object.create(Enemy);
+const Goblin = Object.create(Enemy);
 
-
-GoblinTest.setUp = function(archer) {
-  // delegate to enemy init to initialize Goblin factory
-  console.log(this, 'th setupis')
-
-  this.init(`goblin${goblinCounter++}`, "../../Images/goblin-spritesheet-forward-backward.png", 1, archer, frameWidth, frameHeight, numFrames)
+Goblin.setUp = function(archer) {
+  // delegate to enemy init to initialize Goblin set up
+  this.init(`goblin${goblinCounter++}`, goblinSpritesheet, 1, archer, frameWidth, frameHeight, numFrames)
 }
 
-class Goblin {
-  constructor(name, image, speed, archer) {
-    this.name = name;
-    this.health = 3;
-    this.image = new Image();
-    this.image.src = image;
-    this.frameIndex = 0;
-    this.staggerFrame = 0;
-    this.speed = speed || 1;
-    this.x = xCoordGen.next().value;
-    this.y = yCoordGen.next().value;
-    this.destinationX = xCoordGen.next().value;
-    this.destinationY = yCoordGen.next().value;
-    this.srcX = 0;
-    this.srcY = this.findFrameRow();
-    this.frameWidth = frameWidth;
-    this.frameHeight = frameHeight;
-    this.heroToAttack = archer;
-  }
-
-  findFrameRow() {
-    if (this.destinationX < this.x) {
-      //   he is going to walk left use second row of frames
-      return frameHeight;
-    } else {
-      //  he is about to walk right - use first set of frames
-      return 0;
-    }
-  }
-
-  updateFrame() {
-    this.staggerFrame = ++this.staggerFrame % 2;
-    if (this.staggerFrame === 0) {
-      this.frameIndex = ++this.frameIndex % numFrames;
-    }
-    this.srcX = this.frameIndex * frameWidth;
-  }
-
-  move() {
-    // catch archer logic
-    if (
-      Math.abs(this.x - this.heroToAttack.x) < 24 &&
-      Math.abs(this.y - this.heroToAttack.y) < 24
-    ) {
-      this.x = xCoordGen.next().value;
-      this.srcY = this.findFrameRow();
-      this.y = yCoordGen.next().value;
-      this.catchHero();
-    }
-    if (Math.abs(this.x - this.destinationX) < 32) {
-      // monster hit the destination - walk to a new place to a n
-      this.destinationX = xCoordGen.next().value;
-      this.srcY = this.findFrameRow();
-    } else if (this.x < this.destinationX) {
-      this.x += 2 * this.speed;
-    } else {
-      this.x -= 2 * this.speed;
-    }
-    if (Math.abs(this.y - this.destinationY) < 32) {
-      this.destinationY = yCoordGen.next().value;
-    } else if (this.y > this.destinationY) {
-      this.y -= 2 * this.speed;
-    } else {
-      this.y += 2 * this.speed;
-    }
-  }
-  catchHero() {
-    this.heroToAttack.decreaseHealth(1);
-  }
-}
 
 export {
-  Goblin,
-  GoblinTest
+  Goblin
 };
