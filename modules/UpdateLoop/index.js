@@ -29,10 +29,10 @@ export function update(context, delta) {
 
   unitMovement = delta / 10;
   context.drawImage(archer.image, archer.x, archer.y);
-  
+  // debugger
   for (let i = 0; i < goblinArray.length; i++) {
     goblinArray[i].updateFrame();
-    context.drawImage(goblinArray[i].image, goblinArray[i].srcX, goblinArray[i].srcY, goblinArray[i].frameWidth, goblinArray[i].frameHeight, goblinArray[i].x, goblinArray[i].y, goblinArray[i].frameWidth, goblinArray[i].frameHeight);
+    context.drawImage(goblinArray[i].image, goblinArray[i].srcX, Math.floor(goblinArray[i].srcY), goblinArray[i].frameWidth, goblinArray[i].frameHeight, goblinArray[i].x, goblinArray[i].y, goblinArray[i].frameWidth, goblinArray[i].frameHeight);
     goblinArray[i].move(unitMovement);
   }
   
