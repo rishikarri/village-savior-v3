@@ -29,12 +29,19 @@ $(document).ready(function() {
         return;
     }
     delta += timestamp - lastFrameTimeMs; // get delta since last timestamp
+    var numUpdateSteps = 0;
     lastFrameTimeMs = timestamp;
       // Simulate the total elapsed time in fixed-size chunks
       while (delta >= timestep) {
         context.drawImage(backgroundImage, 0, 0); // @TODO: move this to be background in plain css and then simply draw characters on constant
         update(context, timestep);
         delta -= timestep;
+        if (++numUpdateSteps >= 240) {
+          // reset delta if there are too many steps
+          delta = 0;
+          break; 
+        }
+        console.log(numUpdateSteps, 'num up')
       }
  
     
