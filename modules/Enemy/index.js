@@ -8,7 +8,7 @@ export const Enemy = {
         this.image.src = image;
         this.frameIndex = 0;
         this.staggerFrame = 0;
-        this.speed = speed || 1;
+        this.speed = speed || 0.1;
         this.x = xCoordGen.next().value;
         this.y = yCoordGen.next().value;
         this.destinationX = xCoordGen.next().value;
@@ -36,7 +36,7 @@ export const Enemy = {
         }
         this.srcX = this.frameIndex * this.frameWidth;
     },
-    move() {
+    move(delta) {
         // catch archer logic
         if (
           Math.abs(this.x - this.heroToAttack.x) < 24 &&
@@ -52,16 +52,16 @@ export const Enemy = {
           this.destinationX = xCoordGen.next().value;
           this.srcY = this.findFrameRow();
         } else if (this.x < this.destinationX) {
-          this.x += 2 * this.speed;
+          this.x += delta * this.speed;
         } else {
-          this.x -= 2 * this.speed;
+          this.x -= delta * this.speed;
         }
         if (Math.abs(this.y - this.destinationY) < 32) {
           this.destinationY = yCoordGen.next().value;
         } else if (this.y > this.destinationY) {
-          this.y -= 2 * this.speed;
+          this.y -= delta * this.speed;
         } else {
-          this.y += 2 * this.speed;
+          this.y += delta * this.speed;
         }
       },
       catchHero() {

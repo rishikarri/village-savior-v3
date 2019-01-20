@@ -29,7 +29,7 @@ export function update(context, delta) {
   for (let i = 0; i < goblinArray.length; i++) {
     goblinArray[i].updateFrame();
     context.drawImage(goblinArray[i].image, goblinArray[i].srcX, goblinArray[i].srcY, goblinArray[i].frameWidth, goblinArray[i].frameHeight, goblinArray[i].x, goblinArray[i].y, goblinArray[i].frameWidth, goblinArray[i].frameHeight);
-    goblinArray[i].move();
+    goblinArray[i].move(delta);
   }
   
   archer.move(keysPressed);

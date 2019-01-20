@@ -16,7 +16,7 @@ $(document).ready(function() {
   backgroundImage.src = "./Images/background.jpeg";  
 
   var lastFrameTimeMs = 0; // The last time the loop was run
-  var maxFPS = 10; // The maximum FPS we want to allow
+  var maxFPS = 50; // The maximum FPS we want to allow
   var timestep = 1000 / maxFPS
   var delta = 0;
 
@@ -41,7 +41,6 @@ $(document).ready(function() {
           delta = 0;
           break; 
         }
-        console.log(numUpdateSteps, 'num up')
       }
  
     
