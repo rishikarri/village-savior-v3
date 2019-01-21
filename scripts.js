@@ -45,14 +45,11 @@ $(document).ready(function() {
   function mainLoop(timestamp) {
     // Throttle the frame rate.
     // debugger;
-   
-
-
     clearTimeout(timer)
     function stopTimer() {
       timer = setTimeout(function() {
         stopWorker();
-      }, 3000);
+      }, 2000);
     };
     stopTimer();
     if (timestamp < lastFrameTimeMs + 1000 / maxFPS) {
@@ -72,8 +69,6 @@ $(document).ready(function() {
       }
       if (++numUpdateSteps >= 200) {
         // reset delta if there are too many steps
-        // stopWorker();
-        // gameOn = false;
         delta = 0;
         break;
       }
