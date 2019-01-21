@@ -40,10 +40,21 @@ $(document).ready(function() {
   var timestep = 1000 / maxFPS;
   var delta = 0;
   var gameOn = true;
+  var timer;
+
   function mainLoop(timestamp) {
     // Throttle the frame rate.
     // debugger;
+   
 
+
+    clearTimeout(timer)
+    function stopTimer() {
+      timer = setTimeout(function() {
+        stopWorker();
+      }, 3000);
+    };
+    stopTimer();
     if (timestamp < lastFrameTimeMs + 1000 / maxFPS) {
       // short circuit until alloted time has passed
       requestAnimationFrame(mainLoop);
@@ -54,24 +65,24 @@ $(document).ready(function() {
     lastFrameTimeMs = timestamp;
     // Simulate the total elapsed time in fixed-size chunks
     while (delta >= timestep) {
-      if(gameOn){
+      if (gameOn) {
         context.drawImage(backgroundImage, 0, 0); // @TODO: move this to be background in plain css and then simply draw characters on constant
         update(context, timestep);
         delta -= timestep;
       }
       if (++numUpdateSteps >= 200) {
         // reset delta if there are too many steps
-        stopWorker();
-        gameOn = false;
+        // stopWorker();
+        // gameOn = false;
         delta = 0;
         break;
       }
     }
 
     if (!gameOn) {
-      setTimeout(function(){
+      setTimeout(function() {
         gameOn = true;
-      }, 3000)
+      }, 3000);
     }
 
     requestAnimationFrame(mainLoop);
