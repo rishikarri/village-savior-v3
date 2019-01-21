@@ -16,9 +16,12 @@ function startWorker() {
   }
 }
 
-function stopWorker() { 
-  w.terminate();
-  w = undefined;
+
+function stopWorker() {
+  if (w) {
+    w.terminate();
+    w = undefined;
+  }
 }
 
 $(document).ready(function() {
