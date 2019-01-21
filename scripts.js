@@ -37,13 +37,11 @@ $(document).ready(function() {
   var maxFPS = 50; // The maximum FPS we want to allow
   var timestep = 1000 / maxFPS
   var delta = 0;
-
+  var gameOn = true;
   function mainLoop(timestamp) {
     // Throttle the frame rate. 
     // debugger;
-    if(document.hidden) {
-      console.log('hidden');
-    }
+    
     if (timestamp < lastFrameTimeMs + (1000 / maxFPS)) {
         // short circuit until alloted time has passed
         requestAnimationFrame(mainLoop);
@@ -57,8 +55,9 @@ $(document).ready(function() {
         context.drawImage(backgroundImage, 0, 0); // @TODO: move this to be background in plain css and then simply draw characters on constant
         update(context, timestep);
         delta -= timestep;
-        if (++numUpdateSteps >= 240) {
+        if (++numUpdateSteps >= 200) {
           // reset delta if there are too many steps
+          stopWorker();
           delta = 0;
           break; 
         }
