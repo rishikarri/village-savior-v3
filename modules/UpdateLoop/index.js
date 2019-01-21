@@ -18,15 +18,11 @@ const goblin1 = Object.create(Goblin);
 
 goblin3.setUp(archer);
 goblin1.setUp(archer);
-console.log(goblin1, 'goglin3')
-console.log(Goblin, 'GoblinTest')
 
 const goblinArray = [goblin3, goblin1];
 
 let unitMovement = 2;
 export function update(context, delta) {
-  console.log(delta, 'delta')
-
   unitMovement = delta / 10;
   context.drawImage(archer.image, archer.x, archer.y);
   // debugger

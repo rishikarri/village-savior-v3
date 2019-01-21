@@ -2,8 +2,8 @@
 "use strict";
 
 import { update } from './modules/UpdateLoop/index.js';
+var w;
 function startWorker() {
-  var w;
   if (typeof(Worker) !== "undefined") {
     if (typeof(w) == "undefined") {
       w = new Worker("modules/WebWorkerTimer/index.js");
@@ -40,7 +40,10 @@ $(document).ready(function() {
 
   function mainLoop(timestamp) {
     // Throttle the frame rate. 
-    // debugger;   
+    // debugger;
+    if(document.hidden) {
+      console.log('hidden');
+    }
     if (timestamp < lastFrameTimeMs + (1000 / maxFPS)) {
         // short circuit until alloted time has passed
         requestAnimationFrame(mainLoop);

@@ -1,4 +1,4 @@
-export function Hero(name, image, speed) {
+export function startMonster(name, image, speed) {
     this.name = name;
     this.image = new Image();
     this.image.src = image;
