@@ -8,7 +8,7 @@ function startWorker() {
       w = new Worker("modules/WebWorkerTimer/index.js");
     }
     w.onmessage = function(event) {
-      document.getElementById("timer").innerHTML = event.data;
+      document.getElementById("timer").innerHTML = Number(document.getElementById("timer").innerHTML) + Number(event.data);
     };
   } else {
     document.getElementById("timer").innerHTML =
@@ -45,13 +45,15 @@ $(document).ready(function() {
   function mainLoop(timestamp) {
     // Throttle the frame rate.
     // debugger;
-    clearTimeout(timer)
+    clearTimeout(timer);
+    startWorker();
     function stopTimer() {
       timer = setTimeout(function() {
         stopWorker();
       }, 2000);
     };
     stopTimer();
+
     if (timestamp < lastFrameTimeMs + 1000 / maxFPS) {
       // short circuit until alloted time has passed
       requestAnimationFrame(mainLoop);
