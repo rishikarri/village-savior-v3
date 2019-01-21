@@ -2,6 +2,24 @@
 "use strict";
 
 import { update } from './modules/UpdateLoop/index.js';
+function startWorker() {
+  var w;
+  if (typeof(Worker) !== "undefined") {
+    if (typeof(w) == "undefined") {
+      w = new Worker("modules/WebWorkerTimer/index.js");
+    }
+    w.onmessage = function(event) {
+      document.getElementById("timer").innerHTML = event.data;
+    };
+  } else {
+    document.getElementById("timer").innerHTML = "Sorry! No Web Worker support.";
+  }
+}
+
+function stopWorker() { 
+  w.terminate();
+  w = undefined;
+}
 
 $(document).ready(function() {
   // creating a canvas element
@@ -50,5 +68,6 @@ $(document).ready(function() {
 
   backgroundImage.onload = function() {
     requestAnimationFrame(mainLoop);
+    startWorker();
   };
 });
