@@ -1,27 +1,8 @@
 "use strict";
 
 import { update } from "./modules/UpdateLoop/index.js";
-var w;
-function startWorker() {
-  if (typeof Worker !== "undefined") {
-    if (typeof w == "undefined") {
-      w = new Worker("modules/WebWorkerTimer/index.js");
-    }
-    w.onmessage = function(event) {
-      document.getElementById("timer").innerHTML = Number(document.getElementById("timer").innerHTML) + Number(event.data);
-    };
-  } else {
-    document.getElementById("timer").innerHTML =
-      "Sorry! No Web Worker support.";
-  }
-}
+import { keepTrackOfGameTime } from './modules/TimerManager';
 
-function stopWorker() {
-  if (w) {
-    w.terminate();
-    w = undefined;
-  }
-}
 
 $(document).ready(function() {
   // creating a canvas element
@@ -40,20 +21,9 @@ $(document).ready(function() {
   var timestep = 1000 / maxFPS;
   var delta = 0;
   var gameOn = true;
-  var timer;
 
   function mainLoop(timestamp) {
-    // Throttle the frame rate.
-    // debugger;
-    clearTimeout(timer);
-    startWorker();
-    function stopTimer() {
-      timer = setTimeout(function() {
-        stopWorker();
-      }, 2000);
-    };
-    stopTimer();
-
+   
     if (timestamp < lastFrameTimeMs + 1000 / maxFPS) {
       // short circuit until alloted time has passed
       requestAnimationFrame(mainLoop);
@@ -62,6 +32,9 @@ $(document).ready(function() {
     delta += timestamp - lastFrameTimeMs; // get delta since last timestamp
     var numUpdateSteps = 0;
     lastFrameTimeMs = timestamp;
+    // console.log(keepTrackOfGameTime, 'keepTrackOfGameTime');
+    keepTrackOfGameTime();
+
     // Simulate the total elapsed time in fixed-size chunks
     while (delta >= timestep) {
       if (gameOn) {
@@ -87,6 +60,5 @@ $(document).ready(function() {
 
   backgroundImage.onload = function() {
     requestAnimationFrame(mainLoop);
-    startWorker();
   };
 });
