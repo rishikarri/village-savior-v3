@@ -2,6 +2,8 @@
 
 import { update } from "./modules/UpdateLoop/index.js";
 import { keepTrackOfGameTime } from './modules/TimerManager';
+import { createEnemies } from './modules/EnemyInterval';
+
 
 
 $(document).ready(function() {
@@ -34,6 +36,7 @@ $(document).ready(function() {
     lastFrameTimeMs = timestamp;
     // console.log(keepTrackOfGameTime, 'keepTrackOfGameTime');
     keepTrackOfGameTime();
+    createEnemies();
 
     // Simulate the total elapsed time in fixed-size chunks
     while (delta >= timestep) {
