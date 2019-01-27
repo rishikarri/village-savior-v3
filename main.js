@@ -3,6 +3,8 @@
 import { update } from "./modules/UpdateLoop/index.js";
 import { keepTrackOfGameTime } from './modules/TimerManager';
 import { createEnemies } from './modules/EnemyInterval';
+import { Hero } from "./modules/Hero/index.js";
+
 
 
 
@@ -23,6 +25,8 @@ $(document).ready(function() {
   var timestep = 1000 / maxFPS;
   var delta = 0;
   var gameOn = true;
+  const archer = new Hero("archer", "../../Images/archer.png", 3);
+
 
   function mainLoop(timestamp) {
    
@@ -42,7 +46,7 @@ $(document).ready(function() {
     while (delta >= timestep) {
       if (gameOn) {
         context.drawImage(backgroundImage, 0, 0); // @TODO: move this to be background in plain css and then simply draw characters on constant
-        update(context, timestep);
+        update(context, timestep, archer);
         delta -= timestep;
       }
       if (++numUpdateSteps >= 200) {
@@ -62,6 +66,7 @@ $(document).ready(function() {
   }
 
   backgroundImage.onload = function() {
+
     requestAnimationFrame(mainLoop);
   };
 });
