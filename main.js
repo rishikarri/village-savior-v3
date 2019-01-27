@@ -24,21 +24,6 @@ $(document).ready(function() {
   var gameOn = true;
   const archer = new Hero("archer", "../../Images/archer.png", 3);
 
-  function getMousePos(evt) {
-    var rect = canvas.getBoundingClientRect();
-    console.log({
-      x: evt.clientX - rect.left,
-      y: evt.clientY - rect.top
-    }, 'hi');
-    return {
-      x: evt.clientX - rect.left,
-      y: evt.clientY - rect.top
-    };
-  }
-
-  addEventListener("mousemove", getMousePos);
-  
-
   function mainLoop(timestamp) {
     if (timestamp < lastFrameTimeMs + 1000 / maxFPS) {
       // short circuit until alloted time has passed
