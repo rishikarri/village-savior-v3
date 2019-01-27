@@ -1,12 +1,9 @@
 "use strict";
 
 import { update } from "./modules/UpdateLoop/index.js";
-import { keepTrackOfGameTime } from './modules/TimerManager';
-import { createEnemies } from './modules/EnemyInterval';
+import { keepTrackOfGameTime } from "./modules/TimerManager";
+import { createEnemies } from "./modules/EnemyInterval";
 import { Hero } from "./modules/Hero/index.js";
-
-
-
 
 $(document).ready(function() {
   // creating a canvas element
@@ -27,9 +24,22 @@ $(document).ready(function() {
   var gameOn = true;
   const archer = new Hero("archer", "../../Images/archer.png", 3);
 
+  function getMousePos(evt) {
+    var rect = canvas.getBoundingClientRect();
+    console.log({
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+    }, 'hi');
+    return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+    };
+  }
+
+  addEventListener("mousemove", getMousePos);
+  
 
   function mainLoop(timestamp) {
-   
     if (timestamp < lastFrameTimeMs + 1000 / maxFPS) {
       // short circuit until alloted time has passed
       requestAnimationFrame(mainLoop);
@@ -38,7 +48,6 @@ $(document).ready(function() {
     delta += timestamp - lastFrameTimeMs; // get delta since last timestamp
     var numUpdateSteps = 0;
     lastFrameTimeMs = timestamp;
-    // console.log(keepTrackOfGameTime, 'keepTrackOfGameTime');
     keepTrackOfGameTime();
     createEnemies(archer);
 
@@ -66,7 +75,6 @@ $(document).ready(function() {
   }
 
   backgroundImage.onload = function() {
-
     requestAnimationFrame(mainLoop);
   };
 });

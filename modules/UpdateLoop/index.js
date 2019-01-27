@@ -10,14 +10,6 @@ addEventListener("keydown", function(event) {
   keysPressed[event.keyCode] = true; //this position of the array has a position of true
 });
 
-
-// const goblin3 = Object.create(Goblin);
-// const goblin1 = Object.create(Goblin);
-
-// goblin3.setUp(archer);
-// goblin1.setUp(archer);
-
-
 let unitMovement = 2;
 export function update(context, delta, archer) {
   unitMovement = delta / 10;
