@@ -1,7 +1,7 @@
-export function Hero(name, image, speed) {
+export function Hero(name, imageFaceRight, imageFaceLeft, speed) {
   this.name = name;
   this.image = new Image();
-  this.image.src = image;
+  this.image.src = imageFaceRight;
   this.speed = speed;
   this.health = 20;
   this.x = 200;
@@ -11,7 +11,7 @@ export function Hero(name, image, speed) {
     this.health -= damage;    
   };
 
-  this.move = function(keysPressed, delta) {
+  this.move = function(keysPressed, delta, mouseCoords) {
     
     // move left
     if (keysPressed[65]) {      
@@ -38,6 +38,13 @@ export function Hero(name, image, speed) {
       if (this.y <= 390) {
         this.y += delta * this.speed;
       }
+    }
+    
+    // face right if mouse is in front of center line of character
+    if (mouseCoords.x > (this.x + this.image.width / 2)) {
+      this.image.src = imageFaceRight;
+    } else {
+      this.image.src = imageFaceLeft;
     }
   };
 }

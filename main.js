@@ -22,7 +22,7 @@ $(document).ready(function() {
   var timestep = 1000 / maxFPS;
   var delta = 0;
   var gameOn = true;
-  const archer = new Hero("archer", "../../Images/archer.png", 3);
+  const archer = new Hero("archer", "../../Images/archer.png", "../../Images/archerLeft.png", 3);
 
   function mainLoop(timestamp) {
     if (timestamp < lastFrameTimeMs + 1000 / maxFPS) {
