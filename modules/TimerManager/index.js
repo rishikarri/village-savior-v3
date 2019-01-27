@@ -9,8 +9,6 @@ function startWorker() {
       w = new Worker("../../modules/WebWorkerTimer/index.js");
     }
     w.onmessage = function(event) {
-        console.log(event , 'event');
-        
       document.getElementById("timer").innerHTML =
         Number(document.getElementById("timer").innerHTML) + Number(event.data);
     };
