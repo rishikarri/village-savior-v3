@@ -40,7 +40,7 @@ $(document).ready(function() {
     lastFrameTimeMs = timestamp;
     // console.log(keepTrackOfGameTime, 'keepTrackOfGameTime');
     keepTrackOfGameTime();
-    createEnemies();
+    createEnemies(archer);
 
     // Simulate the total elapsed time in fixed-size chunks
     while (delta >= timestep) {

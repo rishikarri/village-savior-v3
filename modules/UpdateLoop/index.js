@@ -1,4 +1,5 @@
 
+import { enemyArr } from '../EnemyInterval'
 var keysPressed = []; //array that holds whats in the array
 
 addEventListener("keyup", function(event) {
@@ -16,17 +17,16 @@ addEventListener("keydown", function(event) {
 // goblin3.setUp(archer);
 // goblin1.setUp(archer);
 
-const goblinArray = [];
 
 let unitMovement = 2;
 export function update(context, delta, archer) {
   unitMovement = delta / 10;
   context.drawImage(archer.image, archer.x, archer.y);
   // debugger
-  for (let i = 0; i < goblinArray.length; i++) {
-    goblinArray[i].updateFrame();
-    context.drawImage(goblinArray[i].image, goblinArray[i].srcX, Math.floor(goblinArray[i].srcY), goblinArray[i].frameWidth, goblinArray[i].frameHeight, goblinArray[i].x, goblinArray[i].y, goblinArray[i].frameWidth, goblinArray[i].frameHeight);
-    goblinArray[i].move(unitMovement);
+  for (let i = 0; i < enemyArr.length; i++) {
+    enemyArr[i].updateFrame();
+    context.drawImage(enemyArr[i].image, enemyArr[i].srcX, Math.floor(enemyArr[i].srcY), enemyArr[i].frameWidth, enemyArr[i].frameHeight, enemyArr[i].x, enemyArr[i].y, enemyArr[i].frameWidth, enemyArr[i].frameHeight);
+    enemyArr[i].move(unitMovement);
   }
   
   archer.move(keysPressed, unitMovement);
