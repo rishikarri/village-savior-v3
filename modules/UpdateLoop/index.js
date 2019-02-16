@@ -27,8 +27,6 @@ addEventListener("mousemove", getMousePos);
 
 let unitMovement = 2;
 export function update(context, delta, archer) {
-  console.log(mouseCoords);
-  
   unitMovement = delta / 10;
   context.drawImage(archer.image, archer.x, archer.y);
   // debugger
