@@ -1,6 +1,8 @@
 
-import { enemyArr } from '../EnemyInterval'
-var keysPressed = []; //array that holds whats in the array
+import { enemyArr } from '../EnemyInterval';
+import { Arrow } from '../Arrow';
+const keysPressed = []; 
+const arrowArray = [];
 let mouseCoords = {
   x: 0,
   y: 0
@@ -21,14 +23,27 @@ addEventListener("keydown", function(event) {
   keysPressed[event.keyCode] = true; //this position of the array has a position of true
 });
 
+addEventListener("click", function(event) {
+  console.log('click');
+  const arrow = Object.create(Arrow);
+  arrowArray.push(arrow);
+});
+
 
 addEventListener("mousemove", getMousePos);
 
-
+function createArrows(archer) {
+  if (arrowArray.length === 0) return;
+  arrowArray[0].init('arrow1', '../../Images/arrow-right.png', null, archer, enemyArr);
+  console.log(arrowArray)
+}
 let unitMovement = 2;
 export function update(context, delta, archer) {
+  // console.log(enemyArr)
+
   unitMovement = delta / 10;
   context.drawImage(archer.image, archer.x, archer.y);
+  createArrows(archer, enemyArr);
   // debugger
   for (let i = 0; i < enemyArr.length; i++) {
     enemyArr[i].updateFrame();
