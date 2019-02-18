@@ -42,6 +42,8 @@ function moveArrows(archer, enemyArr, context, delta) {
     }
     
     arrow.move(delta);
+    arrow.catchEnemy();
+
     context.drawImage(arrow.image, arrow.x, arrow.y);
   })
   

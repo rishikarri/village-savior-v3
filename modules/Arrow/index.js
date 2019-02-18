@@ -9,6 +9,7 @@ export const Arrow = {
         this.shootRight = archer.faceRight;
         this.x = archer.x + 15;
         this.y = archer.y + 19;
+        this.enemyCaught = null;
         this.initiated = true;
     },
     move(delta) {
@@ -19,6 +20,20 @@ export const Arrow = {
             this.image.src = '../../Images/arrow-left.png';
             this.x -= delta * this.speed;
         }
+    },
+    catchEnemy() {
+        this.enemyArray.forEach((enemy) => {
+            if (
+                Math.abs(this.x - enemy.x) < 24 &&
+                Math.abs(this.y - enemy.y) < 24
+            ) {
+                this.enemyCaught = enemy;
+                this.dealDamage(enemy)
+            }
+        })
+    },
+    dealDamage(enemy) {
+        enemy.decreaseHealth(1);
     }
     // move(delta) {
     //     // catch archer logic
