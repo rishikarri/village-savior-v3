@@ -24,8 +24,9 @@ addEventListener("keydown", function(event) {
 });
 
 addEventListener("click", function(event) {
-  console.log('click');
+  console.log('click', event.x);
   const arrow = Object.create(Arrow);
+  
   arrowArray.push(arrow);
 });
 
@@ -37,7 +38,7 @@ function moveArrows(archer, enemyArr, context, delta) {
 
   arrowArray.forEach((arrow) => {
     if (!arrow.initiated) {
-      arrow.init('arrow1', '../../Images/arrow-right.png', null, archer, enemyArr);
+      arrow.init('arrow1', 0.2, archer, enemyArr);
     }
     
     arrow.move(delta);

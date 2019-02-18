@@ -1,18 +1,24 @@
 export const Arrow = {
-    init: function(name, image, speed, archer, enemyArray) {
+    init: function(name, speed, archer, enemyArray) {
         this.name = name;
         this.image = new Image();
-        this.image.src = image;
+        this.image.src = '../../Images/arrow-right.png';
         this.speed = speed || 0.1;
         this.archer = archer;
         this.enemyArray = enemyArray;
-        this.direction = 'right';
+        this.shootRight = archer.faceRight;
         this.x = archer.x + 15;
         this.y = archer.y + 19;
         this.initiated = true;
     },
     move(delta) {
-        this.x += delta * this.speed;
+        if (this.shootRight) {
+            this.image.src = '../../Images/arrow-right.png';
+            this.x += delta * this.speed;
+        } else {
+            this.image.src = '../../Images/arrow-left.png';
+            this.x -= delta * this.speed;
+        }
     }
     // move(delta) {
     //     // catch archer logic
