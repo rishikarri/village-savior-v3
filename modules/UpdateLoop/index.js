@@ -34,12 +34,16 @@ addEventListener("mousemove", getMousePos);
 
 function moveArrows(archer, enemyArr, context, delta) {
   if (arrowArray.length === 0) return;
-  if (!arrowArray[0].initiated) {
-    arrowArray[0].init('arrow1', '../../Images/arrow-right.png', null, archer, enemyArr);
-  }
+
+  arrowArray.forEach((arrow) => {
+    if (!arrow.initiated) {
+      arrow.init('arrow1', '../../Images/arrow-right.png', null, archer, enemyArr);
+    }
+    
+    arrow.move(delta);
+    context.drawImage(arrow.image, arrow.x, arrow.y);
+  })
   
-  arrowArray[0].move(delta);
-  context.drawImage(arrowArray[0].image, arrowArray[0].x, arrowArray[0].y);
 }
 let unitMovement = 2;
 export function update(context, delta, archer) {
