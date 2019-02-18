@@ -32,10 +32,14 @@ addEventListener("click", function(event) {
 
 addEventListener("mousemove", getMousePos);
 
-function createArrows(archer) {
+function moveArrows(archer, enemyArr, context, delta) {
   if (arrowArray.length === 0) return;
-  arrowArray[0].init('arrow1', '../../Images/arrow-right.png', null, archer, enemyArr);
-  console.log(arrowArray)
+  if (!arrowArray[0].initiated) {
+    arrowArray[0].init('arrow1', '../../Images/arrow-right.png', null, archer, enemyArr);
+  }
+  
+  arrowArray[0].move(delta);
+  context.drawImage(arrowArray[0].image, arrowArray[0].x, arrowArray[0].y);
 }
 let unitMovement = 2;
 export function update(context, delta, archer) {
@@ -43,7 +47,7 @@ export function update(context, delta, archer) {
 
   unitMovement = delta / 10;
   context.drawImage(archer.image, archer.x, archer.y);
-  createArrows(archer, enemyArr);
+  moveArrows(archer, enemyArr, context, delta);
   // debugger
   for (let i = 0; i < enemyArr.length; i++) {
     enemyArr[i].updateFrame();

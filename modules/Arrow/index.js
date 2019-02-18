@@ -6,8 +6,13 @@ export const Arrow = {
         this.speed = speed || 0.1;
         this.archer = archer;
         this.enemyArray = enemyArray;
+        this.x = 200;
+        this.y = 200;
+        this.initiated = true;
     },
-
+    move(delta) {
+        this.x += delta * this.speed;
+    }
     // move(delta) {
     //     // catch archer logic
     //     if (
