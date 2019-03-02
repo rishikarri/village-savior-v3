@@ -25,8 +25,8 @@ export const Arrow = {
     catchEnemy() {
         this.enemyArray.forEach((enemy) => {
             if (
-                Math.abs(this.x - enemy.x) < 24 &&
-                Math.abs(this.y - enemy.y) < 24 
+                Math.abs(this.x - enemy.x) < 20 &&
+                Math.abs(this.y - enemy.y) < 16 
                 && !this.enemyCaught
             ) {
                 this.enemyCaught = true;

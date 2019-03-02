@@ -36,7 +36,10 @@ addEventListener("mousemove", getMousePos);
 function moveArrows(archer, enemyArr, context, delta) {
   if (arrowArray.length === 0) return;
 
-  arrowArray.forEach((arrow) => {
+  // only loop through arrows that have not hit enemies 
+  const liveArrows = arrowArray.filter((arrow) => !arrow.enemyCaught);
+
+  liveArrows.forEach((arrow) => {
     if (!arrow.initiated) {
       arrow.init('arrow1', 0.2, archer, enemyArr);
     }
