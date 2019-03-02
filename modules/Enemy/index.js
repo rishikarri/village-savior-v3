@@ -77,5 +77,6 @@ export const Enemy = {
   },
   decreaseHealth (damage = 1) {
     this.health -= damage;    
+    console.log(this, 'i got hit');
   }
 };

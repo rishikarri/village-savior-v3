@@ -1,3 +1,4 @@
+import { debounce } from '../Utils';
 export const Arrow = {
     init: function(name, speed, archer, enemyArray) {
         this.name = name;
@@ -25,15 +26,20 @@ export const Arrow = {
         this.enemyArray.forEach((enemy) => {
             if (
                 Math.abs(this.x - enemy.x) < 24 &&
-                Math.abs(this.y - enemy.y) < 24
+                Math.abs(this.y - enemy.y) < 24 
+                && !this.enemyCaught
             ) {
-                this.enemyCaught = enemy;
+                this.enemyCaught = true;
                 this.dealDamage(enemy)
             }
         })
     },
     dealDamage(enemy) {
-        enemy.decreaseHealth(1);
+        // console.log(enemy, 'enemy');
+        // const debouncedDealDamage = debounce(() => enemy.decreaseHealth(1), 100);
+        // debouncedDealDamage();
+        enemy.decreaseHealth(1)
+        
     }
     // move(delta) {
     //     // catch archer logic
