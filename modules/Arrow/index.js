@@ -22,23 +22,4 @@ export const Arrow = {
             this.x -= delta * this.speed;
         }
     },
-    // catchEnemy() {
-    //     this.enemyArray.forEach((enemy) => {
-    //         if (
-    //             Math.abs(this.x - enemy.x) < 20 &&
-    //             Math.abs(this.y - enemy.y) < 16 
-    //             && !this.enemyCaught
-    //         ) {
-    //             this.enemyCaught = true;
-    //             this.dealDamage(enemy)
-    //         }
-    //     })
-    // },
-    dealDamage(enemy) {
-        // console.log(enemy, 'enemy');
-        // const debouncedDealDamage = debounce(() => enemy.decreaseHealth(1), 100);
-        // debouncedDealDamage();
-        enemy.decreaseHealth(1)
-        
-    }
 }

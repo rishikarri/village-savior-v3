@@ -8,7 +8,8 @@ export const Enemy = {
     archer,
     frameWidth,
     frameHeight,
-    numFrames
+    numFrames,
+    detectCollision,
   ) {
     this.name = name;
     this.health = 3;
@@ -27,6 +28,7 @@ export const Enemy = {
     this.frameWidth = frameWidth;
     this.numFrames = numFrames;
     this.heroToAttack = archer;
+    this.detectCollision = detectCollision;
     this.moving = false;
   },
   findFrameRow() {
@@ -74,20 +76,20 @@ export const Enemy = {
       this.y += delta * this.speed;
     }
   },
-  detectCollision(arrowArray) {
-    // console.log(arrowArray, 'arrow array');
-    if (arrowArray.length < 1) return;
-      arrowArray.forEach((arrow) => {
-      if (
-          Math.abs(this.x - arrow.x) < 20 &&
-          Math.abs(this.y - arrow.y + 12) < 30 
-          && !arrow.enemyCaught
-      ) {
-          arrow.enemyCaught = true;
-          this.decreaseHealth()
-      }
-    })
-  },
+  // detectCollision(arrowArray) {
+  //   // console.log(arrowArray, 'arrow array');
+  //   if (arrowArray.length < 1) return;
+  //     arrowArray.forEach((arrow) => {
+  //     if (
+  //         Math.abs(this.x - arrow.x) < 20 &&
+  //         Math.abs(this.y - arrow.y + 12) < 30 
+  //         && !arrow.enemyCaught
+  //     ) {
+  //         arrow.enemyCaught = true;
+  //         this.decreaseHealth()
+  //     }
+  //   })
+  // },
   catchHero() {
     this.heroToAttack.decreaseHealth(1);
   },
