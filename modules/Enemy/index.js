@@ -30,7 +30,6 @@ export const Enemy = {
     this.moving = false;
   },
   findFrameRow() {
-    console.log(this.frameHeight, 'frame heigh');
     if (this.destinationX < this.x) {
       //   he is going to walk left use second row of frames
       return this.frameHeight;
@@ -81,7 +80,7 @@ export const Enemy = {
       arrowArray.forEach((arrow) => {
       if (
           Math.abs(this.x - arrow.x) < 20 &&
-          Math.abs(this.y - arrow.y + 9) < 32 
+          Math.abs(this.y - arrow.y + 12) < 30 
           && !arrow.enemyCaught
       ) {
           arrow.enemyCaught = true;

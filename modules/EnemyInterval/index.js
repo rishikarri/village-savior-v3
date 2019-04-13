@@ -13,8 +13,6 @@ function createEnemies(archer) {
     const goblin = Object.create(Goblin);
     goblin.setUp(archer);
     enemyArr.push(goblin);
-    console.log(goblin, 'goblin');
-    // debugger;
   }
   prevTime = Number(time);
 }

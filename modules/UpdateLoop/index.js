@@ -52,8 +52,6 @@ function moveArrows(archer, enemyArr, context, delta) {
 }
 let unitMovement = 2;
 export function update(context, delta, archer) {
-  // console.log(enemyArr)
-  console.log(enemyArr, 'enemyarr');
   unitMovement = delta / 10;
   context.drawImage(archer.image, archer.x, archer.y);
   moveArrows(archer, enemyArr, context, delta);
