@@ -9,10 +9,12 @@ function createEnemies(archer) {
 
   if (time === prevTime) return;
 
-  if (prevTime % 5 == 0 && prevTime !== 0) {
+  if ((prevTime % 5 == 0) && prevTime !== 0) {
     const goblin = Object.create(Goblin);
     goblin.setUp(archer);
     enemyArr.push(goblin);
+    console.log(goblin, 'goblin');
+    // debugger;
   }
   prevTime = Number(time);
 }

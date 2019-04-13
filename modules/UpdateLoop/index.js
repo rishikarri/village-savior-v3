@@ -44,8 +44,7 @@ function moveArrows(archer, enemyArr, context, delta) {
       arrow.init('arrow1', 0.2, archer, enemyArr);
     }
     
-    arrow.move(delta);
-    arrow.catchEnemy();
+    arrow.move(delta);    
 
     context.drawImage(arrow.image, arrow.x, arrow.y);
   })
@@ -54,7 +53,7 @@ function moveArrows(archer, enemyArr, context, delta) {
 let unitMovement = 2;
 export function update(context, delta, archer) {
   // console.log(enemyArr)
-
+  console.log(enemyArr, 'enemyarr');
   unitMovement = delta / 10;
   context.drawImage(archer.image, archer.x, archer.y);
   moveArrows(archer, enemyArr, context, delta);
@@ -63,6 +62,8 @@ export function update(context, delta, archer) {
     enemyArr[i].updateFrame();
     context.drawImage(enemyArr[i].image, enemyArr[i].srcX, Math.floor(enemyArr[i].srcY), enemyArr[i].frameWidth, enemyArr[i].frameHeight, enemyArr[i].x, enemyArr[i].y, enemyArr[i].frameWidth, enemyArr[i].frameHeight);
     enemyArr[i].move(unitMovement);
+    enemyArr[i].detectCollision(arrowArray);
+
   }
   
   archer.move(keysPressed, unitMovement, mouseCoords);

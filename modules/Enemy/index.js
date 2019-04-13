@@ -22,13 +22,15 @@ export const Enemy = {
     this.destinationX = xCoordGen.next().value;
     this.destinationY = yCoordGen.next().value;
     this.srcX = 0;
+    this.frameHeight = frameHeight;
     this.srcY = this.findFrameRow();
     this.frameWidth = frameWidth;
-    this.frameHeight = frameHeight;
     this.numFrames = numFrames;
     this.heroToAttack = archer;
+    this.moving = false;
   },
   findFrameRow() {
+    console.log(this.frameHeight, 'frame heigh');
     if (this.destinationX < this.x) {
       //   he is going to walk left use second row of frames
       return this.frameHeight;
@@ -46,6 +48,7 @@ export const Enemy = {
   },
   move(delta) {
     // catch archer logic
+    if (!this.moving) return;
     if (
       Math.abs(this.x - this.heroToAttack.x) < 24 &&
       Math.abs(this.y - this.heroToAttack.y) < 24
@@ -71,6 +74,20 @@ export const Enemy = {
     } else {
       this.y += delta * this.speed;
     }
+  },
+  detectCollision(arrowArray) {
+    // console.log(arrowArray, 'arrow array');
+    if (arrowArray.length < 1) return;
+      arrowArray.forEach((arrow) => {
+      if (
+          Math.abs(this.x - arrow.x) < 20 &&
+          Math.abs(this.y - arrow.y + 9) < 32 
+          && !arrow.enemyCaught
+      ) {
+          arrow.enemyCaught = true;
+          this.decreaseHealth()
+      }
+    })
   },
   catchHero() {
     this.heroToAttack.decreaseHealth(1);
