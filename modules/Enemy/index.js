@@ -29,7 +29,7 @@ export const Enemy = {
     this.numFrames = numFrames;
     this.heroToAttack = archer;
     this.detectCollision = detectCollision;
-    this.moving = false;
+    this.moving = true;
   },
   findFrameRow() {
     if (this.destinationX < this.x) {
@@ -76,25 +76,14 @@ export const Enemy = {
       this.y += delta * this.speed;
     }
   },
-  // detectCollision(arrowArray) {
-  //   // console.log(arrowArray, 'arrow array');
-  //   if (arrowArray.length < 1) return;
-  //     arrowArray.forEach((arrow) => {
-  //     if (
-  //         Math.abs(this.x - arrow.x) < 20 &&
-  //         Math.abs(this.y - arrow.y + 12) < 30 
-  //         && !arrow.enemyCaught
-  //     ) {
-  //         arrow.enemyCaught = true;
-  //         this.decreaseHealth()
-  //     }
-  //   })
-  // },
   catchHero() {
     this.heroToAttack.decreaseHealth(1);
   },
   decreaseHealth (damage = 1) {
     this.health -= damage;    
     console.log(this, 'i got hit');
+  }, 
+  faintingAnimation() {
+    // implement
   }
 };

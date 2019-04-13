@@ -57,6 +57,7 @@ export function update(context, delta, archer) {
   moveArrows(archer, enemyArr, context, delta);
   // debugger
   for (let i = 0; i < enemyArr.length; i++) {
+    if (enemyArr[i].health === 0) continue;
     enemyArr[i].updateFrame();
     context.drawImage(enemyArr[i].image, enemyArr[i].srcX, Math.floor(enemyArr[i].srcY), enemyArr[i].frameWidth, enemyArr[i].frameHeight, enemyArr[i].x, enemyArr[i].y, enemyArr[i].frameWidth, enemyArr[i].frameHeight);
     enemyArr[i].move(unitMovement);
